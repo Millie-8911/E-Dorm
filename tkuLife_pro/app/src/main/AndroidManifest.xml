@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tkuLife.dorm">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:icon="@drawable/ic_campusinfor"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_campusinfor"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TkuLife_pro">
+        <service
+            android:name="com.tkuLife.dorm.NotifyService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity android:name="com.tkuLife.dorm.admin.packageManagement.PackageRecord" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/email__1_" />
+
+        <service
+            android:name="com.tkuLife.dorm.FCMService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name="com.tkuLife.dorm.student.stdPackage.PackagePage">
+            <intent-filter>
+                <action android:name="Package" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tkuLife.dorm.student.laundry.peaktimeChart.PeakTime" />
+        <activity android:name="com.tkuLife.dorm.student.laundry.status.machineStatus.StatusWithTab" />
+        <activity android:name="com.tkuLife.dorm.student.laundry.status.machineStatus.StatusFirstFloor" />
+        <activity android:name="com.tkuLife.dorm.student.laundry.status.floor.FloorStatus" />
+        <activity android:name="com.tkuLife.dorm.admin.fixReport.fixTab.DescribePage" />
+        <activity android:name="com.tkuLife.dorm.admin.AdminMainPage" />
+        <activity android:name="com.tkuLife.dorm.admin.packageManagement.PushNotification" />
+        <activity android:name="com.tkuLife.dorm.admin.fixReport.FixNotification" />
+        <activity android:name="com.tkuLife.dorm.student.laundry.fixReport.FixPage" />
+        <activity android:name="com.tkuLife.dorm.student.laundry.Laundry" />
+        <activity android:name="com.tkuLife.dorm.student.reminder.PushNotification" />
+        <activity android:name="com.tkuLife.dorm.student.StdMainPage" />
+        <activity android:name="com.tkuLife.dorm.UserSelect" />
+        <activity android:name="com.tkuLife.dorm.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.tkuLife.dorm.student.reminder.PushNotification$TrashReceiver">
+            <intent-filter>
+                <action android:name="trash" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.tkuLife.dorm.student.laundry.status.machineStatus.StatusAdapter$Receiver">
+            <intent-filter>
+                <action android:name="busy" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.tkuLife.dorm.NotifyService$StopServiceReceiver"
+            android:enabled="true" />
+    </application>
+
+</manifest>
